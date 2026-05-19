@@ -1,0 +1,62 @@
+use VIT_CAMPUS; 
+select * from worker;
+
+select worker_id,first_name,department,salary from worker where salary not between 100000 and 300000
+or department='Admin';
+
+select first_name,department,salary from worker where department='Admin' and salary>100000;
+
+select worker_id,first_name,department,salary from worker where worker_id in (1,7);
+
+select worker_id,first_name,department,salary from worker where worker_id not in (2,4,6);
+
+select worker_id,first_name,department,salary from worker where salary not between 100000 and 300000;
+
+select worker_id,first_name,department,salary from worker where salary not between 100000 and 300000
+and worker_id not in (1,5,7);
+
+select * from worker where first_name like 's%';
+
+select * from worker where first_name like '__h%';
+
+select * from worker where first_name like 's%s_';
+
+select * from worker where first_name like '%b_';
+
+select min(salary) from worker where department='Admin';
+
+select max(salary) from worker where department='hr';
+
+select sum(salary) from worker where department='hr';
+
+select avg(salary) from worker where department='Admin';
+
+select min(salary) from worker where department='Admin' and first_name not like '%a%';
+
+select salary from worker 
+union all
+select salary from worker;
+
+select salary from worker where worker_id in(1,3,4,7)
+union
+select salary from worker where worker_id=2;
+
+select count(worker_id)as Total_in_Admin from worker where department='Admin';
+
+select distinct(department) as dept from worker;
+
+select worker_id,first_name,
+case
+	when salary>300000 then 'Rich people'
+    when salary<100000 and salary<299999 then 'Middle'
+    else 'poor'
+end
+as status from worker;
+
+create view MinSalaryHr as
+select min(salary) from worker where department='Hr';
+
+create view MaxSalaryHr as
+select max(salary) from worker where department='Hr';
+
+select * from maxsalaryhr;
