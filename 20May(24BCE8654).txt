@@ -1,0 +1,77 @@
+use VIT_CAMPUS; 
+
+create table Persons(
+	id int not null,
+	lastname varchar(255) not null,
+    firstname varchar(255) not null,
+    age int
+);
+desc persons;
+
+alter table persons
+add unique(lastname);
+
+alter table persons
+add unique(age);
+
+ALTER TABLE persons
+DROP constraint age;
+
+drop table persons;
+
+create table Persons(
+	id int not null,
+	lastname varchar(255) not null,
+    firstname varchar(255) not null,
+    age int not null,check(age>=18 and age<=23)
+);
+insert into persons values(1,'Sharma','Mohit',19);
+insert into persons values(2,'Kumar','Rohan',17);
+select * from persons;
+
+alter table persons
+add city varchar(255) default 'Gurgaon';
+
+create table product(
+	pid int primary key,
+    pname varchar(100) not null,
+    prefno int not null unique
+);
+desc product;
+
+insert into product values (101,'Monitor',12653);
+select * from product;
+
+insert into product values (103,'Mouse',19953);
+
+alter table persons
+add primary key(id);
+
+alter table persons
+drop primary key;
+
+drop table product;
+
+create table category(
+	cid int primary key,
+    cname varchar(100) not null
+);
+insert into category values (101,'Monitor'),(102,'Mouse');
+
+create table product(
+	pid int primary key,
+    pname varchar(100) not null,
+    cid int,
+    foreign key(cid) references category(cid)
+);
+desc product;
+
+insert into product values (1,'hp envy',101),(2,'Razor mouse',120);
+insert into product values (3,'Dell',101),(4,'EvoFox mouse',102);
+
+select * from product;
+
+delete from category where cid=101;
+update 
+
+insert into product values (504,'Power Bank Samsung',64-bit encry key);
